@@ -24,6 +24,7 @@ if (getenv('MEDIAWIKI_SERVER') == '') {
     $wgServer = getenv('MEDIAWIKI_SERVER');
     $url = parse_url($wgServer);
     $wgUsePathInfo = true;
+    $wgUploadPath = $url['path'].'/images';
 }
 
 $wgResourceBasePath = $wgScriptPath;
@@ -104,7 +105,6 @@ if (getenv('MEDIAWIKI_DB_TYPE') == 'sqlite') {
 $wgMainCacheType = CACHE_ACCEL;
 $wgMemCachedServers = [];
 
-$wgUploadPath = '/images';
 $wgUploadDirectory = '/images';
 $wgUploadSizeWarning = false;
 
@@ -203,6 +203,8 @@ if (getenv('MEDIAWIKI_EXTENSION_REMOTE_USER_ENABLED') == ''
     $wgGroupPermissions['*']['createaccount'] = false;
     $wgGroupPermissions['*']['autocreateaccount'] = true;
 }
+
+$wgFileExtensions = array('png','gif','jpg','jpeg','doc','xls','mpp','pdf','ppt','tiff','bmp','docx', 'xlsx', 'pptx','ps','odt','ods','odp','odg','gff');
 
 # Load extra settings
 require 'ExtraLocalSettings.php';

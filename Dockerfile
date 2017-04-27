@@ -31,6 +31,15 @@ ADD https://extdist.wmflabs.org/dist/extensions/Auth_remoteuser-$EXTENSION_REMOT
 RUN tar -xzf /tmp/extension-remoteuser.tar.gz -C /var/www/mediawiki/extensions && \
 rm /tmp/extension-remoteuser.tar.gz
 
+ENV MEDIAWIKI_DB_TYPE="postgres" \
+    MEDIAWIKI_DB_HOST="db" \
+    MEDIAWIKI_DB_PORT="5432" \
+    MEDIAWIKI_DB_NAME="postgres" \
+    MEDIAWIKI_DB_USER="postgres" \
+    MEDIAWIKI_LANGUAGE_CODE="en" \
+    MEDIAWIKI_ENABLE_UPLOADS=1 \
+    MEDIAWIKI_ENABLE_VISUAL_EDITOR=0
+
 COPY config/nginx/* /etc/nginx/
 COPY config/mediawiki/* /var/www/mediawiki/
 COPY script/* /script/
