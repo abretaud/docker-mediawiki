@@ -22,9 +22,9 @@ if (getenv('MEDIAWIKI_SERVER') == '') {
     throw new Exception('Missing environment variable MEDIAWIKI_SERVER');
 } else {
     $wgServer = getenv('MEDIAWIKI_SERVER');
-    $url = parse_url($wgServer);
     $wgUsePathInfo = true;
-    $wgUploadPath = $url['path'].'/images';
+    $wgScriptPath = getenv('MEDIAWIKI_PROXY_PREFIX');
+    $wgUploadPath = $wgScriptPath.'/images';
 }
 
 $wgResourceBasePath = $wgScriptPath;
