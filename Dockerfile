@@ -26,7 +26,7 @@ RUN rm -rf /var/www/mediawiki && \
 COPY config/mediawiki/* /var/www/mediawiki/
 
 # REMOET_USER auth extension
-ARG EXTENSION_REMOTEUSER_VERSION=master-c316e11
+ARG EXTENSION_REMOTEUSER_VERSION=REL1_28-7bae7ae
 ADD https://extdist.wmflabs.org/dist/extensions/Auth_remoteuser-$EXTENSION_REMOTEUSER_VERSION.tar.gz /tmp/extension-remoteuser.tar.gz
 RUN tar -xzf /tmp/extension-remoteuser.tar.gz -C /var/www/mediawiki/extensions && \
 rm /tmp/extension-remoteuser.tar.gz
