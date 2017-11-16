@@ -42,5 +42,5 @@ ENV MEDIAWIKI_DB_TYPE="postgres" \
 
 COPY config/nginx/* /etc/nginx/
 COPY config/mediawiki/* /var/www/mediawiki/
-COPY script/* /script/
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY config/php-fpm/php-fpm.conf /usr/local/etc/
