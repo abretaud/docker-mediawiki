@@ -4,7 +4,7 @@ MAINTAINER Anthony Bretaudeau <anthony.bretaudeau@inra.fr>
 # Install psql php ext
 RUN apt-get -q update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
-    nano libpq-dev postgresql-client && \
+    nano libpq-dev postgresql-client zip && \
     BUILD_DEPS="libpq-dev"; \
     DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install $BUILD_DEPS \
  && docker-php-ext-install pgsql pdo_pgsql \
@@ -25,7 +25,7 @@ RUN rm -rf /var/www/mediawiki && \
     ln -s /images /var/www/mediawiki/images
 COPY config/mediawiki/* /var/www/mediawiki/
 
-# REMOET_USER auth extension
+# REMOTE_USER auth extension
 ARG EXTENSION_REMOTEUSER_VERSION=REL1_28-7bae7ae
 ADD https://extdist.wmflabs.org/dist/extensions/Auth_remoteuser-$EXTENSION_REMOTEUSER_VERSION.tar.gz /tmp/extension-remoteuser.tar.gz
 RUN tar -xzf /tmp/extension-remoteuser.tar.gz -C /var/www/mediawiki/extensions && \

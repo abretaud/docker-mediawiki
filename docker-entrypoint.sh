@@ -56,13 +56,15 @@ then
     echo "CREATE DATABASE $MEDIAWIKI_DB_NAME;" | psql -U "$MEDIAWIKI_DB_USER" -h "$MEDIAWIKI_DB_HOST" -p "$MEDIAWIKI_DB_PORT" postgres;
 fi
 
-# Check if tables are there and that drush works
+# Check if tables are there
 DB_LOADED=$(PGPASSWORD=$MEDIAWIKI_DB_PASSWORD psql -U "$MEDIAWIKI_DB_USER" -h "$MEDIAWIKI_DB_HOST" -p "$MEDIAWIKI_DB_PORT" -tAc "SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'page');")
 if [[ $DB_LOADED != "t" ]]
 then
 	echo "Installing db schema..."
     /script/install.sh ${MEDIAWIKI_ADMIN_USER:=admin} ${MEDIAWIKI_ADMIN_PASSWORD:=admin}
 fi
+
+php maintenance/update.php --skip-external-dependencies --quick
 
 # Start supervisord
 /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
