@@ -4,7 +4,7 @@ MAINTAINER Anthony Bretaudeau <anthony.bretaudeau@inra.fr>
 # Install psql php ext
 RUN apt-get -q update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
-    nano libpq-dev postgresql-client zip && \
+    nano libpq-dev postgresql-client zip unzip && \
     BUILD_DEPS="libpq-dev"; \
     DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install $BUILD_DEPS \
  && docker-php-ext-install pgsql pdo_pgsql \
