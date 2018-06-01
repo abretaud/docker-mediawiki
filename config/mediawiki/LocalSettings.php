@@ -204,7 +204,7 @@ if (getenv('MEDIAWIKI_EXTENSION_REMOTE_USER_ENABLED') == ''
     $wgGroupPermissions['*']['autocreateaccount'] = true;
 }
 
-$wgFileExtensions = array('png','gif','jpg','jpeg','doc','xls','mpp','pdf','ppt','tiff','bmp','docx', 'xlsx', 'pptx','ps','odt','ods','odp','odg','gff');
+$wgFileExtensions = array('png','gif','jpg','jpeg','doc','xls','mpp','pdf','ppt','tiff','bmp','docx', 'xlsx', 'pptx','ps','odt','ods','odp','odg','gff','csv');
 
 # Load extra settings
 require 'ExtraLocalSettings.php';
