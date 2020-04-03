@@ -26,9 +26,10 @@ RUN rm -rf /var/www/mediawiki && \
 COPY config/mediawiki/* /var/www/mediawiki/
 
 # REMOTE_USER auth extension
-ARG EXTENSION_REMOTEUSER_VERSION=REL1_28-7bae7ae
-ADD https://extdist.wmflabs.org/dist/extensions/Auth_remoteuser-$EXTENSION_REMOTEUSER_VERSION.tar.gz /tmp/extension-remoteuser.tar.gz
+ARG EXTENSION_REMOTEUSER_VERSION=REL1_28
+ADD https://github.com/wikimedia/mediawiki-extensions-Auth_remoteuser/archive/$EXTENSION_REMOTEUSER_VERSION.tar.gz /tmp/extension-remoteuser.tar.gz
 RUN tar -xzf /tmp/extension-remoteuser.tar.gz -C /var/www/mediawiki/extensions && \
+    mv /var/www/mediawiki/extensions/mediawiki-extensions-Auth_remoteuser-REL1_28/ /var/www/mediawiki/extensions/Auth_remoteuser/ && \
     rm /tmp/extension-remoteuser.tar.gz && \
     sed -i "s|getenv( 'REMOTE_USER' )|getenv( 'HTTP_REMOTE_USER' )|" /var/www/mediawiki/extensions/Auth_remoteuser/src/AuthRemoteuserSessionProvider.php
 
