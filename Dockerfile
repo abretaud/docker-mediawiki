@@ -29,7 +29,8 @@ COPY config/mediawiki/* /var/www/mediawiki/
 ARG EXTENSION_REMOTEUSER_VERSION=REL1_28-7bae7ae
 ADD https://extdist.wmflabs.org/dist/extensions/Auth_remoteuser-$EXTENSION_REMOTEUSER_VERSION.tar.gz /tmp/extension-remoteuser.tar.gz
 RUN tar -xzf /tmp/extension-remoteuser.tar.gz -C /var/www/mediawiki/extensions && \
-rm /tmp/extension-remoteuser.tar.gz
+    rm /tmp/extension-remoteuser.tar.gz && \
+    sed -i "s|getenv( 'REMOTE_USER' )|getenv( 'HTTP_REMOTE_USER' )|" /var/www/mediawiki/extensions/Auth_remoteuser/src/AuthRemoteuserSessionProvider.php
 
 ENV MEDIAWIKI_DB_TYPE="postgres" \
     MEDIAWIKI_DB_HOST="db" \
