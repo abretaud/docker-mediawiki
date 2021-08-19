@@ -1,5 +1,5 @@
 FROM kristophjunge/mediawiki:1.28
-MAINTAINER Anthony Bretaudeau <anthony.bretaudeau@inra.fr>
+MAINTAINER Anthony Bretaudeau <anthony.bretaudeau@inrae.fr>
 
 # Install psql php ext
 RUN apt-get -q update && \
